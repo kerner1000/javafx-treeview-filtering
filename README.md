@@ -10,3 +10,5 @@ A MWE on how to filter TreeView content using
 
 ![Demo1](https://media.giphy.com/media/FbLlai0WNdrKca05T1/giphy.gif)
 
+Updated version heavily inspired by [kaznovac](https://stackoverflow.com/users/382655/kaznovac)'s answer on [SO](https://stackoverflow.com/questions/15897936/javafx-2-treeview-filtering)!
+
