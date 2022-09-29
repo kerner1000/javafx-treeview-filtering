@@ -13,13 +13,15 @@ import java.util.function.Predicate;
 
 public class FilterableTreeItem<T> extends TreeItem<T> {
     private final ObservableList<TreeItem<T>> sourceChildren = FXCollections.observableArrayList();
+
+    // Do not convert this to a local variable. Thinks will break.
+    private final FilteredList<TreeItem<T>> filteredChildren = new FilteredList<>(sourceChildren);
     private final ObjectProperty<Predicate<T>> predicate = new SimpleObjectProperty<>();
 
     public FilterableTreeItem(T value) {
         super(value);
 
-        FilteredList<TreeItem<T>> filteredChildren = new FilteredList<>(sourceChildren);
-        filteredChildren.predicateProperty().bind(Bindings.createObjectBinding(this::initPredicate, predicate));
+        filteredChildren.predicateProperty().bind(Bindings.createObjectBinding(this::buildFilterableListPredicate, predicate));
 
         filteredChildren.addListener((ListChangeListener<TreeItem<T>>) c -> {
             while (c.next()) {
@@ -33,7 +35,7 @@ public class FilterableTreeItem<T> extends TreeItem<T> {
         });
     }
 
-    private Predicate<TreeItem<T>> initPredicate(){
+    private Predicate<? super TreeItem<T>> buildFilterableListPredicate() {
         return child -> {
             if (child instanceof FilterableTreeItem) {
                 ((FilterableTreeItem<T>) child).predicateProperty().set(predicate.get());
