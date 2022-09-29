@@ -8,5 +8,5 @@ A MWE on how to filter TreeView content using
 
 
 
-![Demo1]([https://giphy.com/embed/FbLlai0WNdrKca05T1](https://media.giphy.com/media/FbLlai0WNdrKca05T1/giphy.gif))
+![Demo1](https://media.giphy.com/media/FbLlai0WNdrKca05T1/giphy.gif)
 
